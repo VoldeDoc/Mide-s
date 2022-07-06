@@ -1,3 +1,42 @@
+.accordion {
+  background-color: #eee;
+  color: #111;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.5s;
+}
+
+.accordion:hover {
+  background-color: silver;
+}
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.accordion.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  color: #276baa;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -19,86 +58,6 @@ body {
   h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway", sans-serif;
   }
-  
-  /*--------------------------------------------------------------
-  # Preloader
-  --------------------------------------------------------------*/
-  #preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 9999;
-    overflow: hidden;
-    background: #fff;
-  }
-  
-  #preloader:before {
-    content: "";
-    position: fixed;
-    top: calc(50% - 30px);
-    left: calc(50% - 30px);
-    border: 6px solid #1977cc;
-    border-top-color: #d1e6f9;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    -webkit-animation: animate-preloader 1s linear infinite;
-    animation: animate-preloader 1s linear infinite;
-  }
-  
-  @-webkit-keyframes animate-preloader {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes animate-preloader {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  /*--------------------------------------------------------------
-  # Back to top button
-  --------------------------------------------------------------*/
-  .back-to-top {
-    position: fixed;
-    visibility: hidden;
-    opacity: 0;
-    right: 15px;
-    bottom: 15px;
-    z-index: 996;
-    background: #1977cc;
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
-    transition: all 0.4s;
-  }
-  .back-to-top i {
-    font-size: 28px;
-    color: #fff;
-    line-height: 0;
-  }
-  .back-to-top:hover {
-    background: #298ce5;
-    color: #fff;
-  }
-  .back-to-top.active {
-    visibility: visible;
-    opacity: 1;
-  }
-  
-  .datepicker-dropdown {
-    padding: 20px !important;
-  }
-  
   
   /*--------------------------------------------------------------
   # Header
@@ -125,13 +84,9 @@ body {
   #header .logo a {
     color: #2c4964;
   }
-  #header .logo img {
-    max-height: 40px;
-  }
-  
-  /**
+  /*===========
   * Appointment Button *
-  */
+  =============*/
   .appointment-btn {
     margin-left: 25px;
     background: limegreen;
@@ -198,61 +153,12 @@ body {
     color: #1977cc;
     border-color: #1977cc;
   }
-  .navbar .dropdown ul {
-    display: block;
-    position: absolute;
-    left: 20px;
-    top: calc(100% + 30px);
-    margin: 0;
-    padding: 10px 0;
-    z-index: 99;
-    opacity: 0;
-    visibility: hidden;
-    background: #fff;
-    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-    transition: 0.3s;
-  }
-  .navbar .dropdown ul li {
-    min-width: 200px;
-  }
-  .navbar .dropdown ul a {
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: none;
-    color: #082744;
-    border: none;
-  }
-  .navbar .dropdown ul a i {
-    font-size: 12px;
-  }
-  .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
+  
+  .navbar .dropdown ul a:hover, .navbar .dropdown ul li:hover > a {
     color: #1977cc;
   }
-  .navbar .dropdown:hover > ul {
-    opacity: 1;
-    top: 100%;
-    visibility: visible;
-  }
-  .navbar .dropdown .dropdown ul {
-    top: 0;
-    left: calc(100% - 30px);
-    visibility: hidden;
-  }
-  .navbar .dropdown .dropdown:hover > ul {
-    opacity: 1;
-    top: 0;
-    left: 100%;
-    visibility: visible;
-  }
-  @media (max-width: 1366px) {
-    .navbar .dropdown .dropdown ul {
-      left: -90%;
-    }
-    .navbar .dropdown .dropdown:hover > ul {
-      left: -100%;
-    }
-  }
+ 
+  
   
   /**
   * Mobile Navigation 
@@ -266,7 +172,7 @@ body {
     transition: 0.5s;
   }
   .mobile-nav-toggle.bi-x {
-    color: #fff;
+    color: rgb(189, 20, 20);
   }
   
   @media (max-width: 991px) {
@@ -302,7 +208,7 @@ body {
     bottom: 15px;
     left: 15px;
     padding: 10px 0;
-    background-color: #fff;
+    background-color: silver;
     overflow-y: auto;
     transition: 0.3s;
   }
@@ -318,35 +224,9 @@ body {
   .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
     color: #1977cc;
   }
-  .navbar-mobile .getstarted, .navbar-mobile .getstarted:focus {
-    margin: 15px;
-  }
-  .navbar-mobile .dropdown ul {
-    position: static;
-    display: none;
-    margin: 10px 20px;
-    padding: 10px 0;
-    z-index: 99;
-    opacity: 1;
-    visibility: visible;
-    background: #fff;
-    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-  }
-  .navbar-mobile .dropdown ul li {
-    min-width: 200px;
-  }
-  .navbar-mobile .dropdown ul a {
-    padding: 10px 20px;
-  }
-  .navbar-mobile .dropdown ul a i {
-    font-size: 12px;
-  }
-  .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
-    color: #1977cc;
-  }
-  .navbar-mobile .dropdown > .dropdown-active {
-    display: block;
-  }
+ 
+  
+  
   
   
   /* =======================
@@ -415,7 +295,7 @@ body {
   /* Why choose Mide's signature */
 
   .content{
-    background-color: #e6d5dc;
+    background-color: silver;
     padding-top: 80px;
     padding-bottom: 99px;
     margin-top: 40px;
@@ -432,12 +312,12 @@ body {
   }
 
 .content:hover{
-  background-color:#fff;
+  background-color:white;
 }
 
-  /*  ----------------About         */
+  /*  ----------------About-----------*/
 .about{
-    background-image: linear-gradient( 135deg, silver 0%, #e6d5dc 100%);
+    background-image: linear-gradient( 135deg, silver 0%, pink 100%);
 }
 .abouttext{
   font-size: 22px;
@@ -535,9 +415,9 @@ body {
 
 /* ==========Testimonial========== */
 #testimonials{
-  background-image: linear-gradient( 135deg, silver 0%, #e6d5dc 100%);
+  background-image: linear-gradient( 135deg, silver 0%, pink 100%);
 }
-testimonials .testimonial-wrap {
+.testimonials .testimonial-wrap {
   padding-left: 50px;
 }
 .testimonials .testimonials-carousel, .testimonials .testimonials-slider {
@@ -634,7 +514,7 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 button {
-  background-color: #4CAF50;
+  background-color: limegreen;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -651,7 +531,7 @@ button:hover {
 .cancelbtn {
   width: auto;
   padding: 10px 18px;
-  background-color: #f44336;
+  background-color: #f32112;
 }
 
 /* Center the image and position the close button */
@@ -718,7 +598,7 @@ span.psw {
 /* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
+   animation: animatezoom 0.6s
 }
 
 @-webkit-keyframes animatezoom {
@@ -741,6 +621,8 @@ span.psw {
      width: 100%;
   }
 }
+
+
 
 /* ===========contacts for the webpage=========== */
 .twitter{
@@ -800,6 +682,3 @@ span.psw {
   background-color: #082744;
 }
 
-#contact{
-  background-image: linear-gradient( 135deg, silver 0%, #e6d5dc 100%);
-}
